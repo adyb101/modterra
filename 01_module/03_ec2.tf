@@ -1,4 +1,4 @@
-#Security Group
+# Security Group
 resource "aws_security_group" "minajeong_websg" {
   name        = "Allow-WEB"
   description = "http-ssh-icmp"
@@ -70,7 +70,7 @@ resource "aws_security_group" "minajeong_websg" {
   }
 }
 
-#Web_instance
+# Web_instance
 data "aws_ami" "amzn" {
   most_recent = true
 
@@ -102,6 +102,7 @@ resource "aws_instance" "minajeong_weba" {
   }
 }
 
+# Elastic IP
 resource "aws_eip" "minajeong_web_eip" {
   vpc                       = true
   instance                  = aws_instance.minajeong_weba.id
