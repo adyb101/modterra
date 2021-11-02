@@ -1,3 +1,4 @@
+# 변수 입력
 module "stage" {
   source           = "../01_module"
 
@@ -35,9 +36,4 @@ module "stage" {
   db_pw            = "It12345!"
   db_pgn           = "default.mysql8.0"
   db_snapshot      = "true"
-
-
-
-
-
 }
