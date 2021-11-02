@@ -1,3 +1,4 @@
+# DB_rds
 resource "aws_db_instance" "minajeong_mydb" {
   allocated_storage        = 20
   storage_type             = "${var.db_st_type}"
