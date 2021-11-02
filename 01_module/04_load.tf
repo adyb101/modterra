@@ -49,7 +49,7 @@ resource "aws_lb_listener" "minajeong_lblist" {
 }
 
 
-#Load balancer target group attachement
+# Load balancer target group attachement
 resource "aws_lb_target_group_attachment" "minajeong_lbtg_att" {
   target_group_arn = aws_lb_target_group.minajeong_lbtg.arn
   target_id        = aws_instance.minajeong_weba.id
