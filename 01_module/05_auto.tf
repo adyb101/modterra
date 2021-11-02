@@ -8,6 +8,7 @@ resource "aws_ami_from_instance" "minajeong_ami" {
 }
 
 
+
 # Launch_configuration
 resource "aws_launch_configuration" "minajeong_lacf" {
   name          = "${var.name}-web"
