@@ -1,3 +1,4 @@
+# 변수 입력
 module "production" {
   source           = "../01_module"
 
