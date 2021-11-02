@@ -1,3 +1,4 @@
+# 변수 선언
 variable "name" {
   type = string
 #  default = "majeong"
