@@ -31,7 +31,7 @@ resource "aws_nat_gateway" "minajeong_nga" {
 }
 
 
-# nat gateway_route table association
+# Nat gateway_route table association
 resource "aws_route_table_association" "minajeong_ngartas" {
     count            = "${length(var.private_s)}"
     subnet_id        = aws_subnet.minajeong_pri[count.index].id
