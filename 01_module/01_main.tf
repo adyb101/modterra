@@ -1,4 +1,4 @@
-# main
+# Main
 provider "aws" {
   region = var.region
 }
@@ -9,7 +9,7 @@ resource "aws_key_pair" "minajeong_key" {
   public_key = file("../../../.ssh/id_rsa.pub")
 }
 
-# vpc
+# VPC
 resource "aws_vpc" "minajeong_vpc" {
   cidr_block = var.cidr_main
   enable_dns_support = true
@@ -20,7 +20,7 @@ resource "aws_vpc" "minajeong_vpc" {
   }
 }
 
-
+# Public subnet
 resource "aws_subnet" "minajeong_pub" {
   vpc_id            = aws_vpc.minajeong_vpc.id
   count             = "${length(var.public_s)}" #2
@@ -32,7 +32,7 @@ resource "aws_subnet" "minajeong_pub" {
   }
 }
 
-#가용영역 a의 Private Subnet
+# Private subnet
 resource "aws_subnet" "minajeong_pri" {
   vpc_id            = aws_vpc.minajeong_vpc.id
   count             = "${length(var.private_s)}" #2
@@ -44,6 +44,7 @@ resource "aws_subnet" "minajeong_pri" {
   }
 }
 
+# Private DB subnet
 resource "aws_subnet" "minajeong_pridb" {
   vpc_id            = aws_vpc.minajeong_vpc.id
   count             = "${length(var.private_dbs)}" #2
@@ -55,7 +56,7 @@ resource "aws_subnet" "minajeong_pridb" {
   }
 }
 
-
+# Internet gateway
 resource "aws_internet_gateway" "minajeong_ig" {
   vpc_id = aws_vpc.minajeong_vpc.id
 
@@ -64,7 +65,7 @@ resource "aws_internet_gateway" "minajeong_ig" {
   }
 }
 
-
+# Route table
 resource "aws_route_table" "minajeong_rt" {
   vpc_id = aws_vpc.minajeong_vpc.id
 
@@ -88,7 +89,7 @@ resource "aws_route_table" "minajeong_rt" {
   }
 }
 
-
+# Route table association
 resource "aws_route_table_association" "minajeong_rtas_a" {
   count = "${length(var.public_s)}"
   subnet_id = aws_subnet.minajeong_pub[count.index].id
