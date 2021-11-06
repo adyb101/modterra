@@ -54,56 +54,59 @@ variable "private_ip" {
 #  default = "10.0.0.11"
 }
 
-
-variable "ssh_port" {
+variable "port_ssh" {
   type = number
 #  default = 22
 }
 
-
-variable "http_port" {
+variable "port_http" {
   type = number
 #  default = 80
 }
 
-variable "icmp_port" {
+variable "port_minus" {
   type = number
 #  default = -1
 }
 
-variable "mysql_port" {
+variable "port_mysql" {
   type = number
 #  default = 3306
 }
 
-variable "prot_ssh" {
+variable "protocol_ssh" {
   type = string
 #  default = "ssh"
 }
 
-variable "prot_tcp" {
+variable "protocol_tcp" {
   type = string
 #  default = "tcp"
 }
 
-variable "prot_http" {
+variable "protocol_udp" {
+  type = string
+#  default = "udp"
+}
+
+variable "protocol_http" {
   type = string
 #  default = "http"
 }
 
-variable "prot_icmp" {
+variable "protocol_http1" {
+  type = string
+  default = "HTTP"
+}
+
+variable "protocol_icmp" {
   type = string
 #  default = "icmp"
 }
 
-variable "prot_mysql"{
-  type = string
-#  default = "mysql"
-}
-
-variable "prot_all" {
-  type =  string
-#  default = "All"
+variable "protocol_minus"{
+  type = number
+#  default = -1
 }
 
 variable "ami" {
@@ -121,12 +124,12 @@ variable "lb_type" {
 #  default = "application"
 }
 
-variable "hctype" {
-  type = string
-#  default = "ELB"
+variable "db_storage_size" {
+  type = number
+  default = 20
 }
 
-variable "db_st_type" {
+variable "db_storage_type" {
   type = string
 #  default = "gp2"
 }
@@ -136,9 +139,14 @@ variable "db_engine" {
 #  default = "mysql"
 }
 
-variable "db_vs" {
+variable "db_version" {
   type = string
 #  default = "8.0"
+}
+
+variable "db_instance_type" {
+  type = string
+  default = "db.t2.micro"
 }
 
 variable "db_name" {
@@ -151,7 +159,7 @@ variable "db_id" {
 #  default = "mydb"
 }
 
-variable "db_user" {
+variable "db_username" {
   type = string
 #  default = "admin"
 }
@@ -161,12 +169,17 @@ variable "db_pw" {
 #  default = "It12345!"
 }
 
-variable "db_pgn" {
-  type = string
-#  default = "default.mysql8.0"
-}
-
 variable "db_snapshot" {
   type = string
 #  default = "true"
+}
+
+variable "strategy" {
+  type = string
+#  default = "cluster"
+}
+
+variable "endpoint" {
+  type = string
+  default = "data.aws_db_instance.mydb.endpoint"
 }
