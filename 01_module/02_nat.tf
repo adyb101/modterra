@@ -12,6 +12,7 @@ resource "aws_nat_gateway" "minajeong_nga" {
     "Name" = "${var.name}-ng"
   }
 }
+
 # Nat gateway_route table
 resource "aws_route_table" "minajeong_ngart" {
   vpc_id = aws_vpc.minajeong_vpc.id
@@ -25,7 +26,6 @@ resource "aws_route_table" "minajeong_ngart" {
     "Name" = "${var.name}-ng-rt"
   }
 }
-
 
 # Nat gateway_route table association
 resource "aws_route_table_association" "minajeong_ngartas" {
