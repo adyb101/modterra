@@ -19,6 +19,7 @@ resource "aws_db_instance" "minajeong_mydb" {
     "Name" = "${var.name}-${var.db_name}"
   }
 }
+
 #DB_subnet group
 resource "aws_db_subnet_group" "minajeong_dbsn" {
   name       = "${var.name}-dbsb-group"
