@@ -39,7 +39,7 @@ resource "aws_security_group" "minajeong_websg" {
       self             = null
     },
     {
-      description      = var.db_name
+      description      = var.protocol_mysql
       from_port        = var.port_mysql
       to_port          = var.port_mysql
       protocol         = var.protocol_tcp
