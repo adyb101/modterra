@@ -6,27 +6,25 @@ resource "aws_eip" "lb_ip" {
 }
 
 resource "aws_nat_gateway" "minajeong_nga" {
-  count = "${length(var.public_s)}"
-  allocation_id = aws_eip.lb_ip[count.index].id
-  subnet_id     = aws_subnet.minajeong_pub[count.index].id
+  allocation_id = aws_eip.lb_ip.id
+  subnet_id     = aws_subnet.minajeong_pub[0].id
 
   tags = {
-    "Name" = "${var.name}-nga-${var.avazone[count.index]}"
+    "Name" = "${var.name}-ng"
    }
   }
 
   # Nat gateway_route table
   resource "aws_route_table" "minajeong_ngart" {
     vpc_id = aws_vpc.minajeong_vpc.id
-    count = "${length(var.avazone)}"
-
+    
     route {
         cidr_block  = var.cidr
-        gateway_id  = aws_nat_gateway.minajeong_nga[count.index].id
+        gateway_id  = aws_nat_gateway.minajeong_nga.id
     }
 
     tags = {
-      "Name" = "${var.name}-nga-rt${var.avazone[count.index]}"
+      "Name" = "${var.name}-nga-rt"
     }
 }
 
@@ -35,5 +33,5 @@ resource "aws_nat_gateway" "minajeong_nga" {
 resource "aws_route_table_association" "minajeong_ngartas" {
     count            = "${length(var.private_s)}"
     subnet_id        = aws_subnet.minajeong_pri[count.index].id
-    route_table_id   = aws_route_table.minajeong_ngart[count.index].id    
+    route_table_id   = aws_route_table.minajeong_ngart.id  
 }
