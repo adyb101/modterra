@@ -29,6 +29,7 @@ resource "aws_db_subnet_group" "minajeong_dbsn" {
     "Name" = "${var.name}-dbsb-group"
   }
 }
+
 data "aws_db_instance" "mydb" {
   db_instance_identifier = "mydb"
   depends_on = [
